@@ -25,6 +25,7 @@ extern "C" {
 	fn tls_config_free(config: *mut tls_config);
 	fn tls_config_error(config: *mut tls_config) -> *const i8;
 	
+	#[must_use]
 	fn tls_config_set_protocols(config: *mut tls_config, protocols: u32) -> i32;
 
 	fn tls_client() -> *mut tls;
@@ -32,9 +33,12 @@ extern "C" {
 	fn tls_configure(ctx: *mut tls, config: *mut tls_config) -> i32;
 	fn tls_free(ctx: *mut tls);
 	
+	#[must_use]
 	fn tls_connect(ctx: *mut tls, host: *const i8, port: *const i8) -> i32;
 
+	#[must_use]
 	fn tls_read(ctx: *mut tls, buf: *mut void, buflen: usize) -> isize;
+	#[must_use]
 	fn tls_write(ctx: *mut tls, buf: *const void, buflen: usize) -> isize;
 	fn tls_close(ctx: *mut tls) -> i32;
 	fn tls_error(ctx: *mut tls) -> *const i8;
